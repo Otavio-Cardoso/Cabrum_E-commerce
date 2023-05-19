@@ -1,0 +1,24 @@
+.topnav {
+	overflow: hidden;
+	background-color: blue;
+}  
+.topnav a {
+	float: left;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+} 
+.topnav a:hover {
+	background-color: white;
+	color: orange;
+} 
+.topnav a.active {
+	background-color: orange;
+	color: white;
+}
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}

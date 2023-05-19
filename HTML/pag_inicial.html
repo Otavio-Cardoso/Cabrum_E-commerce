@@ -3,30 +3,28 @@
 	<head>
 		<title>Cabrum</title>
 		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../CSS/style.css"/>
 		<script defer src="../JS/loja.js"></script>
 	</head>
 	<body>
-		<div>
+		<div class="topnav">
+			<a class="active" href="pag_inicial.html">Home</a>
 			<a href="carrinho.html">Carrinho</a>
 			<a href="pedidos.html">Pedidos realizados</a>
-			<form>
-				<div>
-					<fieldset>
-						<legend> Fone de ouvido Bluetooth </legend>
-						<img src="../images/fone_bluetooth.png" width="75"/>
-						<strong>Preço: R$159,90</strong>
-						<input type="button" id="comprar_fone" value="Comprar"/>
-					</fieldset>
-				</div>
-				<div>
-					<fieldset>
-						<legend> Carregador Portátil </legend>
-						<img src="../images/carregador_portatil.webp" width="75"/>
-						<strong>Preço: R$79,99</strong>
-						<input type="button" id="comprar_bateria" value="Comprar"/>
-					</fieldset>
-				</div>
-			</form>
+		</div>
+		<div class="lista_produtos">
+			<table>
+				<thead>
+					<tr>
+						<th colspan="2">Produto</th>
+						<th style="width: 60%;">Descrição</th>
+						<th colspan="2" style="width: 20%">Valor</th>
+					</tr>
+				</thead>
+				<tbody id="corpo_tabela">
+				</tbody>
+			</table>
 		</div>
 	</body>
 </html>
