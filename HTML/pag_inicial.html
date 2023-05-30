@@ -1,56 +1,70 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<title>Cabrum</title>
-	<meta charset="UTF-8" />
-	<meta http-equiv="Content-Security-Policy" content="font-src 'self'">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../CSS/style.css" />
-	<script defer src="../JS/loja.js"></script>
-</head>
-
-<body>
-	<div class="topnav">
-		<a class="active" href="pag_inicial.html">Home</a>
-		<a href="carrinho.html">Carrinho</a>
-		<a href="pedidos.html">Pedidos realizados</a>
-	</div>
-	<div class="lista_produtos">
-		<table>
-			<thead>
-				<tr>
+	<head>
+		<title>Cabrum</title>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="Content-Security-Policy" content="font-src 'self'">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../CSS/style.css"/>
+		<link rel="icon" href="../images/CABRUM.jpg" type="image/x-icon">
+		<script defer src="../JS/loja.js"></script>
+	</head>
+	<body>
+		<div class="topnav">
+			<img src="../images/CABRUM.jpg" alt="Cabrum" style="width: 5%;">
+			<a class="active" href="pag_inicial.html">Home</a>
+			<a href="carrinho.html">Carrinho</a>
+			<a href="pedidos.html">Pedidos realizados</a>
+		</div>
+		<div class="lista_produtos">
+			<table>
+				<thead>
+				  <tr>
 					<th colspan="2">Produto</th>
 					<th style="width: 60%;">Descrição</th>
 					<th colspan="2" style="width: 20%">Valor</th>
-				</tr>
-			</thead>
-			<tbody id="corpo_tabela">
-				<!-- Cada linha representa um produto -->
-				<tr>
-					<td><img src="../images/fone_bluetooth.png" width="100" /></td>
+				  </tr>
+				</thead>
+				<tbody id="corpo_tabela">
+				  <!-- Cada linha representa um produto -->
+				  <tr>
+					<td><img src="../images/fone_bluetooth.png" width="100"/></td>
 					<td>Fone TWS Denovo</td>
 					<td>Fone Bluetooth TWS, com certificação IPX8</td>
 					<td>R$159.90</td>
 					<td>
-						<input id="bt0" type="button" value="Comprar" onclick="adicionarCarrinho('0')">
+					  <input id="bt0" type="button" value="Comprar" onclick="adicionarCarrinho('0')">
 					</td>
-				</tr>
-				<tr>
-					<td><img src="../images/carregador_portatil.webp" width="100" /></td>
+				  </tr>
+				  <tr>
+					<td><img src="../images/carregador_portatil.webp" width="100"/></td>
 					<td>PowerBank tuVerde</td>
 					<td>Power Bank de 12.000mAh, com entrada USB-C e 2 entradas USB-A</td>
 					<td>R$99.90</td>
 					<td>
-						<input id="bt1" type="button" value="Comprar" onclick="adicionarCarrinho('1')">
+					  <input id="bt1" type="button" value="Comprar" onclick="adicionarCarrinho('1')">
 					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div id="carrinho">
-		<ul id="itens-carrinho" style="color: white"></ul>
-	</div>
-</body>
-
+				  </tr>
+				  <tr>
+					<td><img src="../images/caixa de som.jpg" width="100" alt="Caixa de Som Bluetooth"></td>
+					<td>Caixa de Som Bluetooth</td>
+					<td>Caixa de som portátil com conectividade Bluetooth</td>
+					<td>R$199.90</td>
+					<td>
+					  <input id="bt2" type="button" value="Comprar" onclick="adicionarCarrinho('2')">
+					</td>
+				  </tr>
+				  <tr>
+					<td><img src="../images/camera de seguranca.jpg" width="100" alt="Câmera IP"></td>
+					<td>Câmera IP</td>
+					<td>Câmera de segurança IP com resolução HD</td>
+					<td>R$129.90</td>
+					<td>
+					  <input id="bt3" type="button" value="Comprar" onclick="adicionarCarrinho('3')">
+					</td>
+					</tr>
+				</tbody>
+			  </table>
+		</div>
+	</body>
 </html>

@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Pedidos</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../CSS/style.css"/>
-		<meta charset="UTF-8"/>
-	</head>
-	<body>
-		<div class="topnav">
-			<a href="pag_inicial.html">Home</a>
-			<a href="carrinho.html">Carrinho</a>
-			<a class="active" href="pedidos.html">Pedidos realizados</a>
-		</div>
-	</body>
+
+<head>
+	<title>Pedidos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../CSS/style.css" />
+	<link rel="icon" href="../images/CABRUM.jpg" type="image/x-icon">
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+	<div class="topnav">
+		<img src="../images/CABRUM.jpg" alt="Cabrum" style="width: 5%;">
+		<a href="pag_inicial.html">Home</a>
+		<a href="carrinho.html">Carrinho</a>
+		<a class="active" href="pedidos.html">Pedidos realizados</a>
+	</div>
+
+	<div id="pedidos">
+		<h2>Pedidos Realizados</h2>
+		<ul id="lista-pedidos">
+			<!-- Os pedidos serão adicionados dinamicamente aqui -->
+		</ul>
+		<input type="button" value="Apagar pedidos" onclick="zerarPedidos()">
+	</div>
+</body>
+<script src="../JS/loja.js"></script>
+
 </html>
