@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Carrinho Cabrum</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../CSS/style.css"/>
-		<meta charset="UTF-8"/>
-	</head>
-	<body>
-		<div class="topnav">
-			<a href="pag_inicial.html">Home</a>
-			<a class="active" href="carrinho.html">Carrinho</a>
-			<a href="pedidos.html">Pedidos realizados</a>
-		</div>
-		<div>
-		</div>
-	</body>
+
+<head>
+	<title>Carrinho Cabrum</title>
+	<meta http-equiv="Content-Security-Policy" content="font-src 'self'">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../CSS/style.css" />
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+	<div class="topnav">
+		<a href="pag_inicial.html">Home</a>
+		<a class="active" href="carrinho.html">Carrinho</a>
+		<a href="pedidos.html">Pedidos realizados</a>
+	</div>
+
+	<div id="carrinho">
+		<h2>Carrinho</h2>
+		<ul id="itens-carrinho">
+		</ul>
+		<p id="total">Total: R$0.00</p>
+		<button onclick="limparCarrinho()">Limpar Carrinho</button>
+	</div>
+
+	<script src="../JS/loja.js"></script>
+</body>
+
 </html>
