@@ -123,3 +123,35 @@ input {
 #lista-pedidos ul li {
 	padding: 4px 0;
 }
+.item-carrinho {
+	display: flex;
+	align-items: center;
+	justify-content: left;
+  }
+  
+  .remover-button{
+	padding: 4px 10px;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	font-size: 14px;
+	color: #fff;
+  }
+  .adicionar-button {
+	padding: 4px 8px;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	font-size: 14px;
+	color: #fff;
+  }
+  
+  .remover-button {
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: red;
+  }
+  
+  .adicionar-button {
+	background-color: green;
+  }

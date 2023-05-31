@@ -22,7 +22,35 @@ function renderizarCarrinho() {
         let item = carrinho[i];
 
         let itemElement = document.createElement("li");
-        itemElement.innerHTML = `${item.produto} - R$${(item.preco_unit * item.quantidade).toFixed(2)} x ${item.quantidade}`;
+
+        // Criar a div para envolver o conteúdo do item de carrinho
+        let itemContentDiv = document.createElement("div");
+        itemContentDiv.classList.add("item-carrinho"); // Adiciona a classe "item-carrinho" à div
+
+        // Adicionar o conteúdo do item de carrinho dentro da div
+        itemContentDiv.innerHTML = `${item.produto} - R$${(item.preco_unit * item.quantidade).toFixed(2)} x ${item.quantidade}`;
+
+        // Botão de remover item
+        let removerButton = document.createElement("button");
+        removerButton.textContent = "-";
+        removerButton.classList.add("remover-button"); // Adiciona a classe "remover-button" ao botão
+        removerButton.addEventListener("click", function () {
+          removerCarrinho(item.id);
+        });
+        itemContentDiv.appendChild(removerButton);
+
+        // Botão de adicionar item
+        let adicionarButton = document.createElement("button");
+        adicionarButton.textContent = "+";
+        adicionarButton.classList.add("adicionar-button"); // Adiciona a classe "adicionar-button" ao botão
+        adicionarButton.addEventListener("click", function () {
+          adicionarCarrinho(item.id);
+        });
+        itemContentDiv.appendChild(adicionarButton);
+
+        // Adicionar a div como filho do item de carrinho
+        itemElement.appendChild(itemContentDiv);
+
         carrinhoElement.appendChild(itemElement);
 
         total += item.preco_unit * item.quantidade;
@@ -40,6 +68,8 @@ function renderizarCarrinho() {
 
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
+
+
 
 
 function adicionarCarrinho(id) {
@@ -146,7 +176,7 @@ function finalizarCompra() {
 // Outras funções do carrinho...
 
 // Event Listener quando a página for carregada
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", function () {
   renderizarCarrinho();
   exibirPedidos();
 });
