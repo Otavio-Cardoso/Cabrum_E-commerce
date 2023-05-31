@@ -47,7 +47,7 @@ for (let i = 0; i < produtos.length; i++) {
   coluna_botao.appendChild(botao);
   linha.appendChild(coluna_botao);
 
-  botao = addEventListener("click", function() {adicionar_carrinho(botao.value)}); 
+  botao = addEventListener("click", function() {adicionar_carrinho(botao.id)}); 
  
   //comando para colocar a linha no corpo da tabela
   corpo_tabela.appendChild(linha);

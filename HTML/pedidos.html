@@ -7,10 +7,34 @@
 		<meta charset="UTF-8"/>
 	</head>
 	<body>
-		<div class="topnav">
-			<a href="pag_inicial.html">Home</a>
-			<a href="carrinho.html">Carrinho</a>
-			<a class="active" href="pedidos.html">Pedidos realizados</a>
-		</div>
+    <header style="background-color: blue;">
+		  <div class="topnav">
+			  <a href="pag_inicial.html">Home</a>
+			  <a href="carrinho.html">Carrinho</a>
+			  <a class="active" href="pedidos.html">Pedidos realizados</a>
+		  </div>
+    </header>
+    <fieldset>
+      <h1>Fechar Pedidos</h1>
+      <fieldset>
+        <legend>Cliente</legend>
+        <div><input type="text" placeholder="Nome"/></div>
+        <div><input type="text" placeholder="CPF"/></div>
+        <div><input type="text" placeholder="Email"/></div>
+      </fieldset>
+      <fieldset>
+        <legend>Endereço</legend>
+        <div><input type="text" placeholder="CEP"/></div>
+        <div><input type="text" placeholder="Logradouro"/></div>
+        <div><input type="text" placeholder="Número"/></div>
+        <div><input type="text" placeholder="Bairro"/></div>
+        <div><input type="text" placeholder="Cidade"/></div>
+        <div><input type="text" placeholder="Estado"/></div>
+      </fieldset>
+      <fieldset>
+        <legend>Produtos</legend>
+      </fieldset>
+      <input type="button" value="Finalizar Compra"/>
+    </fieldset>
 	</body>
 </html>
