@@ -1,68 +1,187 @@
 let produtos = [
-  {id:1, image:"<img src=\"../images/fone_bluetooth.png\" width=\"100\"/>", produto:"Fone TWS Denovo", descricao:"Fone Bluetooth TWS, com certificação IPX8", preco:159.90, qtde:10},
-  {id:2, image:"<img src=\"../images/carregador_portatil.webp\" width=\"100\"/>", produto:"PowerBank tuVerde", descricao:"Power Bank de 12.000mAh, com entrada USB-C e 2 entradas USB-A", preco:99.90, qtde:15}
+  { id: 0, image: "<img src=\"../images/fone_bluetooth.png\" width=\"100\"/>", produto: "Fone TWS Denovo", descricao: "Fone Bluetooth TWS, com certificação IPX8", preco: 159.90, qtde: 10 },
+  { id: 1, image: "<img src=\"../images/carregador_portatil.webp\" width=\"100\"/>", produto: "PowerBank tuVerde", descricao: "Power Bank de 12.000mAh, com entrada USB-C e 2 entradas USB-A", preco: 99.90, qtde: 15 },
+  { id: 2, image: "../images/caixa_som.png", produto: "Caixa de Som Bluetooth", descricao: "Caixa de som portátil com conectividade Bluetooth", preco: 199.90, qtde: 5 },
+  { id: 3, image: "../images/camera_ip.png", produto: "Câmera IP", descricao: "Câmera de segurança IP com resolução HD", preco: 129.90, qtde: 8 }
 ];
+
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-if (localStorage.getItem('mercadorias') != null) {
-  produtos = [];
-  produtos = JSON.parse(localStorage.getItem('mercadorias'));
-} else {
-  localStorage.setItem("mercadorias", JSON.stringify(produtos));
+function renderizarCarrinho() {
+  let carrinhoElement = document.getElementById("itens-carrinho");
+  let totalElement = document.getElementById("total");
+  let total = 0;
+
+  if (carrinhoElement) {
+    carrinhoElement.innerHTML = "";
+
+    if (carrinho.length === 0) {
+      carrinhoElement.innerHTML = "<li>Nenhum item no carrinho.</li>";
+    } else {
+      for (let i = 0; i < carrinho.length; i++) {
+        let item = carrinho[i];
+
+        let itemElement = document.createElement("li");
+
+        // Criar a div para envolver o conteúdo do item de carrinho
+        let itemContentDiv = document.createElement("div");
+        itemContentDiv.classList.add("item-carrinho"); // Adiciona a classe "item-carrinho" à div
+
+        // Adicionar o conteúdo do item de carrinho dentro da div
+        itemContentDiv.innerHTML = `${item.produto} - R$${(item.preco_unit * item.quantidade).toFixed(2)} x ${item.quantidade}`;
+
+        // Botão de remover item
+        let removerButton = document.createElement("button");
+        removerButton.textContent = "-";
+        removerButton.classList.add("remover-button"); // Adiciona a classe "remover-button" ao botão
+        removerButton.addEventListener("click", function () {
+          removerCarrinho(item.id);
+        });
+        itemContentDiv.appendChild(removerButton);
+
+        // Botão de adicionar item
+        let adicionarButton = document.createElement("button");
+        adicionarButton.textContent = "+";
+        adicionarButton.classList.add("adicionar-button"); // Adiciona a classe "adicionar-button" ao botão
+        adicionarButton.addEventListener("click", function () {
+          adicionarCarrinho(item.id);
+        });
+        itemContentDiv.appendChild(adicionarButton);
+
+        // Adicionar a div como filho do item de carrinho
+        itemElement.appendChild(itemContentDiv);
+
+        carrinhoElement.appendChild(itemElement);
+
+        total += item.preco_unit * item.quantidade;
+      }
+    }
+  } else {
+    console.error("Elemento 'itens-carrinho' não encontrado.");
+  }
+
+  if (totalElement) {
+    totalElement.innerHTML = `Total: R$${total.toFixed(2)}`;
+  } else {
+    console.error("Elemento 'total' não encontrado.");
+  }
+
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
-let corpo_tabela = document.getElementById("corpo_tabela");
 
-for (let i = 0; i < produtos.length; i++) {
-  //comando para criar linha
-	let linha = document.createElement("tr");
-  linha.id = "produto" + (i + 1);
 
-  //comando para criar um coluna
-  //comando para colocar uma informação na coluna
-  //comando para colocar as colunas na linha.
-	let imagem = document.createElement("td");
-  imagem.innerHTML = produtos[i].image;
-  linha.appendChild(imagem);
- 
-  let nome_prod = document.createElement("td");
-  nome_prod.innerHTML = produtos[i].produto;
-  linha.appendChild(nome_prod);
 
-  let descricao_produto = document.createElement("td");
-	descricao_produto.innerHTML = produtos[i].descricao;
-	linha.appendChild(descricao_produto);
+function adicionarCarrinho(id) {
+  let idProd = parseInt(id);
+  let produto = produtos.find(p => p.id === idProd);
 
-  let preco_produto = document.createElement("td");
-	preco_produto.innerHTML = "R$" + produtos[i].preco;
-	linha.appendChild(preco_produto);
+  if (produto) {
+    let itemCarrinho = carrinho.find(item => item.id === idProd);
 
-  let coluna_botao = document.createElement("td");
-	let botao = document.createElement("input");
+    if (itemCarrinho) {
+      itemCarrinho.quantidade++;
+      itemCarrinho.preco_tot = itemCarrinho.preco_unit * itemCarrinho.quantidade;
+    } else {
+      itemCarrinho = {
+        id: produto.id,
+        produto: produto.produto,
+        preco_unit: produto.preco,
+        quantidade: 1,
+        preco_tot: produto.preco
+      };
+      carrinho.push(itemCarrinho);
+    }
 
-  botao.id = "bt" + i;
-  botao.type = "button";
-  botao.value = "Comprar";
-
-  coluna_botao.appendChild(botao);
-  linha.appendChild(coluna_botao);
-
-  botao = addEventListener("click", function() {adicionar_carrinho(botao.id)}); 
- 
-  //comando para colocar a linha no corpo da tabela
-  corpo_tabela.appendChild(linha);
+    renderizarCarrinho();
+  }
 }
 
-function adicionar_carrinho(id_bt) {
-  let id_prod = id_bt.substring(2, id_bt.length);
-  id_prod = parseInt(id_prod);
-  let prod_carrinho = {
-                  id:produtos[id_prod].id,
-                  nome:produtos[id_prod].produto,
-                  preco_unit:produtos[id_prod].preco,
-                  quantidade: qtde, 
-                  preco_tot: prod_carrinho.preco * prod_carrinho.qtde
+function removerCarrinho(id) {
+  let idProd = parseInt(id);
+  let itemCarrinho = carrinho.find(item => item.id === idProd);
+
+  if (itemCarrinho) {
+    itemCarrinho.quantidade--;
+
+    if (itemCarrinho.quantidade === 0) {
+      carrinho = carrinho.filter(item => item.id !== idProd);
+    }
+
+    renderizarCarrinho();
+  }
+}
+
+function limparCarrinho() {
+  carrinho = [];
+  renderizarCarrinho();
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  renderizarCarrinho();
+});
+
+// Função para exibir os pedidos na página de pedidos
+function exibirPedidos() {
+  let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+  let listaPedidos = document.getElementById("lista-pedidos");
+
+  if (pedidos.length === 0) {
+    listaPedidos.innerHTML = "<li>Nenhum pedido realizado.</li>";
+  } else {
+    listaPedidos.innerHTML = "";
+    for (let i = 0; i < pedidos.length; i++) {
+      let pedido = pedidos[i];
+
+      let itemPedido = document.createElement("li");
+      itemPedido.textContent = `Pedido #${pedido.id}: Total R$${pedido.total.toFixed(2)}`;
+      listaPedidos.appendChild(itemPedido);
+    }
+  }
+}
+
+// Função para finalizar a compra e adicionar o pedido
+function finalizarCompra() {
+  let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  let total = 0;
+
+  // Calcular o total da compra
+  for (let i = 0; i < carrinho.length; i++) {
+    let item = carrinho[i];
+    total += item.preco_unit * item.quantidade;
+  }
+
+  // Gerar um ID único para o pedido
+  let pedidoId = new Date().getTime();
+
+  // Criar o objeto do pedido
+  let pedido = {
+    id: pedidoId,
+    total: total,
+    itens: carrinho
   };
 
-  carrinho.push(prod_carrinho);
+  // Armazenar o pedido no localStorage
+  let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+  pedidos.push(pedido);
+  localStorage.setItem("pedidos", JSON.stringify(pedidos));
+
+  // Limpar o carrinho
+  localStorage.removeItem("carrinho");
+
+  // Redirecionar para a página de pedidos
+  window.location.href = "pedidos.html";
+}
+
+// Outras funções do carrinho...
+
+// Event Listener quando a página for carregada
+window.addEventListener("DOMContentLoaded", function () {
+  renderizarCarrinho();
+  exibirPedidos();
+});
+
+function zerarPedidos() {
+  localStorage.removeItem("pedidos");
+  exibirPedidos();
 }
