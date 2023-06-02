@@ -1,34 +1,28 @@
-let cpf = document.getElementById("cpf");
+let txt_cpf = document.getElementById("cpf");
+txt_cpf.addEventListener("change", function () {auto_completar();});
 
-cpf = addEventListener("change", function () {auto_completar();});
+let txt_nome = document.getElementById("nome");
+let txt_email = document.getElementById("email");
+let txt_cep = document.getElementById("cep");
+let txt_logradouro = document.getElementById("logradouro");
+let txt_numero = document.getElementById("numero");
+let txt_bairro = document.getElementById("bairro");
+let txt_cidade = document.getElementById("cidade");
+let txt_estado = document.getElementById("estado");
 
-window.addEventListener("DOMContentLoaded", function () {
-  exibirPedidos();
-});
+let bt_finalizar = document.getElementById("btn_finalizar");
+bt_finalizar.addEventListener("click", function() {finalizarCompra();});
+
+let infos_pessoas = {
+                    cpf: txt_cpf.value, nome: txt_nome.value, email: txt_email.value,
+                    cep: txt_cep.value, logradouro: txt_logradouro.value, numero: txt_numero.value,
+                    bairro: txt_bairro.value, cidade: txt_cidade.value, estado: txt_estado.value
+};
 
 // Função para completar os oustro inputs text caso tenha um cpf no local storage
 function auto_completar() {
   if (cpf.value === cpf_localStorage) {
      
-  }
-}
-
-// Função para exibir os pedidos na página de pedidos
-function exibirPedidos() {
-  let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-  let listaPedidos = document.getElementById("lista-pedidos");
-
-  if (pedidos.length === 0) {
-    listaPedidos.innerHTML = "<li>Nenhum pedido realizado.</li>";
-  } else {
-    listaPedidos.innerHTML = "";
-    for (let i = 0; i < pedidos.length; i++) {
-      let pedido = pedidos[i];
-
-      let itemPedido = document.createElement("li");
-      itemPedido.textContent = `Pedido #${pedido.id}: Total R$${pedido.total.toFixed(2)}`;
-      listaPedidos.appendChild(itemPedido);
-    }
   }
 }
 
@@ -59,6 +53,10 @@ function finalizarCompra() {
       total: total,
       itens: carrinho
     };
+    
+    let clientes = [];
+    clientes.push([infos_pessoas, pedido]);
+    localStorage.setItem("clientes", JSON.stringify(clientes));
 
     // Armazenar o pedido no localStorage
     let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
@@ -72,17 +70,3 @@ function finalizarCompra() {
     window.location.href = "pedidos.html";
   }
 }
-let clientes = [cliente1: {
-                  infos: {
-                    cpf:,
-                    nome:,
-                    email:}
-                  pedidos: {
-                    p_id: {
-                      itens:[],  
-                      total: 
-                    }
-                  }
-                }, 
-                cliente2: 
-]
