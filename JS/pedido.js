@@ -1,6 +1,17 @@
+let cpf = document.getElementById("cpf");
+
+cpf = addEventListener("change", function () {auto_completar();});
+
 window.addEventListener("DOMContentLoaded", function () {
   exibirPedidos();
 });
+
+// Função para completar os oustro inputs text caso tenha um cpf no local storage
+function auto_completar() {
+  if (cpf.value === cpf_localStorage) {
+     
+  }
+}
 
 // Função para exibir os pedidos na página de pedidos
 function exibirPedidos() {
@@ -25,3 +36,53 @@ function zerarPedidos() {
   localStorage.removeItem("pedidos");
   exibirPedidos();
 }
+
+function finalizarCompra() {
+  let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  let total = 0;
+
+  // Calcular o total da compra
+  for (let i = 0; i < carrinho.length; i++) {
+    let item = carrinho[i];
+    total += item.preco_unit * item.quantidade;
+  } 
+  
+  if (total == 0) {
+    alert("Impossível finalizar o pedido com o carrinho vazio.");
+  } else {
+    // Gerar um ID único para o pedido
+    let pedidoId = new Date().getTime();
+
+    // Criar o objeto do pedido
+    let pedido = {
+      id: pedidoId,
+      total: total,
+      itens: carrinho
+    };
+
+    // Armazenar o pedido no localStorage
+    let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+    pedidos.push(pedido);
+    localStorage.setItem("pedidos", JSON.stringify(pedidos));
+
+    // Limpar o carrinho
+    localStorage.removeItem("carrinho");
+
+    // Redirecionar para a página de pedidos
+    window.location.href = "pedidos.html";
+  }
+}
+let clientes = [cliente1: {
+                  infos: {
+                    cpf:,
+                    nome:,
+                    email:}
+                  pedidos: {
+                    p_id: {
+                      itens:[],  
+                      total: 
+                    }
+                  }
+                }, 
+                cliente2: 
+]

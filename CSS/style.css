@@ -94,12 +94,23 @@ input {
 	border: none;
 	cursor: pointer;
 }
-#pedidos {
+
+input[type="text"], [type="email"] {
+  background-color: white;
+  border: 1px solid #dddddd;
+  margin-bottom: 15px;
+  width: 95%;
+  color: black;
+  cursor: text;
+}
+
+#pedidos, #formulario {
 	max-width: 600px;
 	margin: 20px auto;
 	padding: 20px;
 	background-color: #fff;
 	border: 1px solid #ddd;
+  color: black;
 }
 
 #pedidos h2 {
