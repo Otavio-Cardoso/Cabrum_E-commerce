@@ -3,19 +3,30 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 function exibirPedidos() {
-  let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-  let listaPedidos = document.getElementById("lista-pedidos");
-
-  if (pedidos.length === 0) {
-    listaPedidos.innerHTML = "<li>Nenhum pedido realizado.</li>";
+  let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+  let lista_clientes = document.getElementById("lista_clientes");
+ 
+  if (clientes.length === 0) {
+    lista_clientes.innerHTML = "<li>Nenhum pedido realizado.</li>";
   } else {
-    listaPedidos.innerHTML = "";
-    for (let i = 0; i < pedidos.length; i++) {
-      let pedido = pedidos[i];
+    lista_clientes.innerHTML = "";
+    for (let i = 0; i < clientes.length; i++) {
+      let cliente = clientes[i];
 
-      let itemPedido = document.createElement("li");
-      itemPedido.textContent = `Pedido #${pedido.id}: Total R$${pedido.total.toFixed(2)}`;
-      listaPedidos.appendChild(itemPedido);
+      let linha_pedido = document.createElement("li");
+      linha_pedido.textContent = `Pedido #${cliente.compra.id}: Total R$${cliente.compra.total.toFixed(2)}`;
+      lista_clientes.appendChild(linha_pedido);
+         
+      let info_comprador = document.createElement("li"); 
+      info_comprador.textContent += `\nComprador: ${cliente.pessoa.nome}`;
+      linha_pedido.appendChild(info_comprador);
+
+      for (let j = 0; j < cliente.compra.itens.length; j++) {
+        let info_compra = document.createElement("li");
+        info_compra.textContent += `${cliente.compra.itens[j].produto}: ${cliente.compra.itens[j].quantidade} X R$${cliente.compra.itens[j].preco_unit.toFixed(2)}`;
+        linha_pedido.appendChild(info_compra);
+      }
+      lista_clientes.appendChild(document.createElement("hr"));
     }
   }
 }

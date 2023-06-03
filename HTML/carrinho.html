@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<title>Carrinho Cabrum</title>
-	<meta http-equiv="Content-Security-Policy" content="font-src 'self'">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../CSS/style.css" />
-	<link rel="icon" href="../images/logo.png" type="image/x-icon">
-	<meta charset="UTF-8" />
-</head>
-
-<body>
-	<div class="topnav">
-		<img src="../images/logo.png" alt="Cabrum" style="width: 5%;">
-		<a href="pag_inicial.html">Home</a>
-		<a class="active" href="carrinho.html">Carrinho</a>
-		<a href="pedidos.html">Pedidos realizados</a>
-	</div>
-
-	<div id="carrinho">
-		<h2>Carrinho</h2>
-		<ul id="itens-carrinho">
-		</ul>
-		<p id="total">Total: R$0.00</p>
-		<input type="button" value="Limpar Carrinho" onclick="limparCarrinho()">
-    <a href="pedidos.html"><input type="button" value="Fechar compra"></a>
-	</div>
-
-	<script src="../JS/loja.js"></script>
-</body>
-
+  <head>
+	  <title>Carrinho</title>
+	  <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Security-Policy" content="font-src 'self'">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="../CSS/style.css"/>
+	  <link rel="icon" href="../images/logo.png" type="image/x-icon">
+	  <script defer src="../JS/loja.js"></script>
+  </head>
+  <body>
+	  <div class="topnav">
+		  <img src="../images/logo.png" alt="Cabrum" style="width: 5%;">
+		  <a href="pag_inicial.html">Home</a>
+		  <a href="carrinho.html" class="active">Carrinho</a>
+		  <a href="historico_pedidos.html">Pedidos realizados</a>
+	  </div>
+	  <div id="carrinho">
+		  <h2>Carrinho</h2>
+		  <ul id="itens-carrinho">
+		  </ul>
+		  <p id="total">Total: R$0.00</p>
+		  <input type="button" value="Limpar Carrinho" onclick="limparCarrinho()">
+      <a href="pedidos.html"><input type="button" value="Fechar compra"></a>
+	  </div>
+	</body>
 </html>

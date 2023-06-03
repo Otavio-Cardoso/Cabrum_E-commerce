@@ -16,8 +16,19 @@ bt_finalizar.addEventListener("click", function() {finalizarCompra();});
 
 // Função para completar os oustro inputs text caso tenha um cpf no local storage
 function auto_completar() {
-  if (cpf.value === cpf_localStorage) {
-     
+  let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+  
+  for (let i = 0; i < clientes.length; i++) {
+    if (clientes[i].pessoa.cpf == txt_cpf.value) {
+      txt_nome.value = clientes[i].pessoa.nome; 
+      txt_email.value = clientes[i].pessoa.email;
+      txt_cep.value = clientes[i].pessoa.cep;
+      txt_logradouro.value = clientes[i].pessoa.logradouro;
+      txt_numero.value = clientes[i].pessoa.numero;
+      txt_bairro.value = clientes[i].pessoa.bairro;
+      txt_cidade.value = clientes[i].pessoa.cidade;
+      txt_estado.value = clientes[i].pessoa.estado;
+    }
   }
 }
 
@@ -55,7 +66,9 @@ function finalizarCompra() {
       };
     
       let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
-      clientes.push([infos_pessoas, pedido]);
+      
+      clientes.push({pessoa: infos_pessoas, compra: pedido});
+      
       localStorage.setItem("clientes", JSON.stringify(clientes));
 
       // Limpar o carrinho
